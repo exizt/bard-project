@@ -13,7 +13,7 @@
 # create stock data
 # python manage.py update_stock
 
-cd /app
+cd /srv/app
 
 echo "run django server"
 python manage.py runserver 0.0.0.0:8000

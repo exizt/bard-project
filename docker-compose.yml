@@ -12,12 +12,12 @@ services:
     #  db:
     #    condition: service_completed_successfully
     volumes:
-      - ./app:/app
-      - ./.docker/docker-entrypoint.sh:/app/docker-entrypoint.sh
+      - ./app:/srv/app
+      - ./.docker/docker-entrypoint.sh:/srv/docker-entrypoint.sh
       # - webapp_data:/app/web
     restart: always
     # command: python manage.py runserver 0.0.0.0:8000
-    entrypoint: /bin/bash /app/docker-entrypoint.sh
+    entrypoint: /bin/bash /srv/docker-entrypoint.sh
   db:
     image: mariadb:10.9
     environment: 

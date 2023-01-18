@@ -29,6 +29,6 @@ RUN apk add --no-cache mariadb-connector-c
 COPY --from=builder /root/.local /root/.local
 ENV PATH=/root/.local/bin:$PATH
 
-WORKDIR /app
+WORKDIR /srv/app
 
 ENTRYPOINT ["tail", "-f", "/dev/null"]
