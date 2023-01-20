@@ -13,6 +13,7 @@ services:
     #    condition: service_completed_successfully
     volumes:
       - ./app:/srv/app
+      - ./scripts:/srv/scripts
       - ./.docker/docker-entrypoint.sh:/srv/docker-entrypoint.sh
       # - webapp_data:/app/web
     restart: always
