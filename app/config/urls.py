@@ -20,6 +20,7 @@ from django.conf import settings
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('', blog_views.index),
 ]
 
 # 디버그 툴바를 위한 설정
