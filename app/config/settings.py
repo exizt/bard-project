@@ -133,3 +133,17 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# 개발 모드에서 디버그 툴바 사용하기
+if DEBUG:
+    INSTALLED_APPS += ["debug_toolbar"]
+    MIDDLEWARE += ["debug_toolbar.middleware.DebugToolbarMiddleware"]
+
+    # 일반적인 경우.
+    # INTERNAL_IPS = ["127.0.0.1"]
+    # docker를 이용하는 경우.
+    # https://gaussian37.github.io/python-django-django-debug-toolbar/
+    import socket  # only if you haven't already imported this
+
+    hostname, _, ips = socket.gethostbyname_ex(socket.gethostname())
+    INTERNAL_IPS = [ip[: ip.rfind(".")] + ".1" for ip in ips] + ["127.0.0.1", "10.0.2.2", env('INTERNAL_IP_')]
