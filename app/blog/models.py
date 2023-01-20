@@ -5,21 +5,34 @@ from django.db import models
 # from . import custom_field
 from .custom_field import *
 from django.utils.timezone import now
+from django.dispatch import receiver
+from django.db.models.signals import post_save
 
 
 class Article(models.Model):
     """
     게시물 테이블
     """
+    class Status(models.IntegerChoices):
+        TRASH = 0  # 휴지통.
+        PUBLISH = 1  # 공개/발행
+        FUTURE = 2  # 발행 예정
+        DRAFT = 3  # 초안. 미완성 글.
+        PENDING = 4  # 보류 중
+        PRIVATE = 5  # 사적인 글. 비공개 글.
+        AUTO_DRAFT = 6  # 자동 저장된 초안.
+
     id = UnsignedAutoField(primary_key=True)
     # article title
     title = models.CharField(max_length=255, default='')
     # slug for article url
-    slug = models.CharField(max_length=255, default='')
+    slug = models.SlugField(max_length=200, default='', unique=True)
     # 본문 요약
     summary = models.CharField(max_length=255, default='')
     # 발행 여부 (기본값 false)
     is_published = models.BooleanField(default=False)
+    # 싱테
+    status = models.IntegerField(choices=Status.choices, default=Status.DRAFT)
     # dates
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
@@ -32,14 +45,25 @@ class Article(models.Model):
         ]
 
 
+@receiver(post_save, sender=Article)
+def create_article_content(sender, instance, created, **kwargs):
+    if created:
+        ArticleContent.objects.create(article=instance)
+
+
 class ArticleContent(models.Model):
     """
     게시물 컨텐츠 테이블.
     History 기능 지원을 고려, PK는 Auto Increment bigint id로 두도록 함.
     """
-    markdown = models.TextField(max_length=255, default='')
-    output = models.TextField(max_length=255, default='')
-    article = models.ForeignKey(Article, on_delete=models.CASCADE)
+    article = models.OneToOneField(
+        Article,
+        on_delete=models.CASCADE,
+        primary_key=True,
+    )
+    markdown = models.TextField(max_length=255, default='', blank=True)
+    output = models.TextField(max_length=255, default='', blank=True)
+    # article = models.ForeignKey(Article, on_delete=models.CASCADE)
 
     class Meta:
         db_table = "article_content"
@@ -50,7 +74,7 @@ class Tag(models.Model):
     id = UnsignedAutoField(primary_key=True)
     name = models.CharField(max_length=255, default='')
     slug = models.CharField(max_length=255, default='')
-    articles = models.ManyToManyField(Article, related_name="tag")
+    articles = models.ManyToManyField(Article, related_name="tag", db_table="tag_article_rel")
     # dates
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
