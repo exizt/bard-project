@@ -1,0 +1,22 @@
+{% extends 'layouts/blog-layout.html' %}
+{% block content %}
+<header>
+  list
+</header>
+<div class="container">
+  {% for article in articles %}
+  <section>
+    <h2><a href="/articles/{{article.slug}}">{{ article.title }}</a></h2>
+    <div>
+      <small>Last updated on: <time datetime="{{ article.published_at }}">{{ article.published_at  | date:'Y-m-d'}}</time></small>
+    </div>
+    <div>
+      <p>{{ article.summary }}</p>
+    </div>
+  </section>
+  {% endfor %}
+</div>
+<style>
+
+</style>
+{% endblock %}
