@@ -24,15 +24,16 @@ class Article(models.Model):
 
     id = UnsignedAutoField(primary_key=True)
     # article title
-    title = models.CharField(max_length=255, default='')
+    title = models.CharField(max_length=255, default='', help_text="게시글 제목 입니다.")
     # slug for article url
     slug = models.SlugField(max_length=200, default='', unique=True)
     # 본문 요약
-    summary = models.CharField(max_length=255, default='')
+    summary = models.CharField(max_length=255, default='', help_text="게시글 요약글 입니다.")
     # 발행 여부 (기본값 false)
     is_published = models.BooleanField(default=False)
     # 싱테
-    status = models.IntegerField(choices=Status.choices, default=Status.DRAFT)
+    status = models.IntegerField(choices=Status.choices, default=Status.DRAFT,
+                                 help_text="게시글 상태 : publish (발행, 공개), draft (임시)")
     # dates
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
