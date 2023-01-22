@@ -1,17 +1,14 @@
-{% extends 'layouts/blog-layout.html' %}
-{% block content %}
-<header>
-
-</header>
+{% extends 'skin_d1/layout.html' %}
+{% block page_content %}
 <div class="container">
-
+  <article>
+    <h1>{{ article.title }}</h1>
+    <div>
+      <small>Last updated on: <time datetime="{{ article.published_at }}">{{ article.published_at  | date:'Y-m-d'}}</time></small>
+    </div>
+    <div>
+      {{ article.content }}
+    </div>
+  </article>
 </div>
-    list
-    {{ article.title }}
-<div>
-
-</div>
-<style>
-
-</style>
 {% endblock %}

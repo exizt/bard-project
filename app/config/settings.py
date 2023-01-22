@@ -134,7 +134,10 @@ STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-# 개발 모드에서 디버그 툴바 사용하기
+# ### 자체적으로 사용되는 설정
+BP_SKIN = 'skin_d1'
+
+# ### 개발 모드에서 디버그 툴바 사용하기
 if DEBUG:
     INSTALLED_APPS += ["debug_toolbar"]
     MIDDLEWARE += ["debug_toolbar.middleware.DebugToolbarMiddleware"]

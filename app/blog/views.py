@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from .models import *
+from django.conf import settings
 from django.forms.models import model_to_dict
 
 
@@ -15,25 +16,29 @@ def index(request):
     context = {
         'articles': articles
     }
-    return render(request, 'skin_d1/list.html', context)
+    skin_name = settings.BP_SKIN
+    return render(request, f'{skin_name}/list.html', context)
 
 
 def view(request, slug):
     article = Article.objects.filter(slug=slug).first()
-    article_dict = model_to_dict(article)
+    article_content = ArticleContent.objects.filter(article=article).first()
 
+    # view에서 이용될 obj(dict)
     article_vo = {
         'id': article.id,
         'published_at': article.published_at,
         'summary': article.summary,
-        'title': article.title
+        'title': article.title,
+        'content': article_content.output
     }
 
     context = {
-        'article': article,
-        'article_vo': article_vo
+        'article': article_vo,
+        'article_origin': article,
     }
-    return render(request, 'skin_d1/article.html', context)
+    skin_name = settings.BP_SKIN
+    return render(request, f'{skin_name}/article.html', context)
 
 
 def get_client_ip(request):
