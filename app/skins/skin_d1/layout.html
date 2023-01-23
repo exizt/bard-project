@@ -3,11 +3,13 @@
 <header id="header">
   Logo
 </header>
-<div id="body-container">
-  {% block page_content %}{% endblock %}
+<div id="main_container">
+  <div class="container">
+    {% block page_content %}{% endblock %}
+  </div>
 </div>
 <footer id="footer">
-  <div>
+  <div class="container">
     footer
   </div>
 </footer>
@@ -28,8 +30,17 @@ td, th { padding:0 }
 }
 #footer {
   border-top: 1px solid #aaa;
-  min-height: 100px;
+  background-color: #333;
+  color: #ddd;
+  min-height: 300px;
   padding: 1.5rem 0;
+}
+#main_container {
+  min-height: 500px;
+}
+#footer .container, #main_container .container {
+  margin: 0 auto;
+  width: 700px;
 }
 </style>
 {% endblock %}
