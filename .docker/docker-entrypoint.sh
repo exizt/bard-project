@@ -16,7 +16,7 @@
 cd /srv/app
 
 # 개발 모드에서만 필요함.
-pip install django-debug-toolbar
+# pip install django-debug-toolbar
 
 echo "run django server"
 python manage.py runserver 0.0.0.0:8000
