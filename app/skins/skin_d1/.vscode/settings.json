@@ -1,0 +1,11 @@
+{
+    "liveSassCompile.settings.forceBaseDirectory": "/resources/sass",
+    "liveSassCompile.settings.formats": [
+        {
+            "format": "expanded",
+            "extensionName": ".css",
+            "savePath": "~/../static/skin_d1",
+            "savePathReplacementPairs": null
+        }
+    ]
+}
