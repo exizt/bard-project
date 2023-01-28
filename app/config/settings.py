@@ -127,15 +127,22 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 
-STATIC_URL = 'static/'
+STATIC_URL = 'assets/'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+# ### 이후로는 추가한 설정들 (위로는 기본 설정값들)
 # ### 자체적으로 사용되는 설정
-BP_SKIN = 'skin_d1'
+BLOG_SKIN = env.str('SKIN', 'skin_d1')
+
+# 정적 리소스를 찾는 디렉토리.
+STATICFILES_DIRS = [
+    BASE_DIR / "resources/assets/static",
+    os.path.join(BASE_DIR, 'skins', BLOG_SKIN, 'resources/static')
+]
 
 # ### 개발 모드에서 디버그 툴바 사용하기
 if DEBUG:

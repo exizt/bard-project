@@ -16,7 +16,7 @@ def index(request):
     context = {
         'articles': articles
     }
-    skin_name = settings.BP_SKIN
+    skin_name = settings.BLOG_SKIN
     return render(request, f'{skin_name}/list.html', context)
 
 
@@ -37,7 +37,7 @@ def view(request, slug):
         'article': article_vo,
         'article_origin': article,
     }
-    skin_name = settings.BP_SKIN
+    skin_name = settings.BLOG_SKIN
     return render(request, f'{skin_name}/article.html', context)
 
 
