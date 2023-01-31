@@ -1,13 +1,14 @@
 {% extends 'skin_d1/layout.html' %}
+{% load blog_extras %}
 {% block page_content %}
-<div class="container">
+<div class="container article-page">
   <article>
     <h1>{{ article.title }}</h1>
     <div>
       <small>Last updated on: <time datetime="{{ article.published_at }}">{{ article.published_at  | date:'Y-m-d'}}</time></small>
     </div>
     <div>
-      {{ article.content }}
+      {{ article.content_markdown | markdown }}
     </div>
   </article>
 </div>

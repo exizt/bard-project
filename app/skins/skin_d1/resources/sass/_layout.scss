@@ -1,0 +1,28 @@
+/* _layout.css */
+#header {
+  border-bottom: 1px solid $color-layout-border;
+  min-height: 100px;
+
+  .header-container {
+    display: flex;
+    justify-content: space-between;
+    padding: 2rem 0;
+  }
+  a.site-title {
+    /*padding: 1em 1em;*/
+  }
+}
+#footer {
+  border-top: 1px solid $color-layout-border;
+  background-color: #333;
+  color: #ddd;
+  min-height: 300px;
+  padding: 1.5rem 0;
+}
+#main_container {
+  min-height: 500px;
+}
+.wrap-container {
+  margin: 0 auto;
+  max-width: $container-max-width;
+}

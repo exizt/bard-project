@@ -41,9 +41,22 @@ a:link, a:visited {
   text-decoration: none;
 }
 
+* {
+  font-family: "Apple SD Gothic Neo", "Noto Sans KR", sans-serif, sans-serif;
+}
+
+/* _layout.css */
 #header {
   border-bottom: 1px solid #aaa;
   min-height: 100px;
+}
+#header .header-container {
+  display: flex;
+  justify-content: space-between;
+  padding: 2rem 0;
+}
+#header a.site-title {
+  /*padding: 1em 1em;*/
 }
 
 #footer {
@@ -58,14 +71,40 @@ a:link, a:visited {
   min-height: 500px;
 }
 
-#footer .container, #main_container .container {
+.wrap-container {
   margin: 0 auto;
-  max-width: 700px;
+  max-width: 1000px;
 }
 
+/* _list.scss */
 /* article list */
 .article-list article {
   min-height: 200px;
+  margin: 1em;
+}
+.article-list article .updated_at small {
+  font-size: 1em;
+}
+.article-list article .author {
+  display: flex;
+}
+.article-list article .author img {
+  background-color: #999;
+  border-radius: 50%;
+}
+.article-list article .author span {
+  margin-left: 0.25em;
+}
+.article-list article .hashtag {
+  margin: 0.25em 0;
+}
+.article-list article .hashtag a:link, .article-list article .hashtag a:visited {
+  color: #bbb;
+  background-color: #333;
+  border-radius: 5px;
+  padding: 0.4em;
+  font-size: 0.5em;
 }
 
-/* article page *//*# sourceMappingURL=style.css.map */
+/* _article.scss */
+/* article page */

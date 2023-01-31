@@ -1,0 +1,35 @@
+/* _list.scss */
+/* article list */
+.article-list {
+  article {
+    min-height: 200px;
+    margin: 1em;
+
+    .updated_at small{
+      font-size: 1em;
+    }
+    .author {
+      display: flex;
+      img {
+        background-color: #999;
+        border-radius: 50%;
+      }
+      span {
+        margin-left: 0.25em;
+      }
+    }
+
+    .hashtag{
+      margin: 0.25em 0;
+      
+      a:link, a:visited {
+        color: #bbb;
+        background-color: #333;
+        border-radius: 5px;
+        padding: 0.4em;
+        font-size: 0.5em;
+      }
+    } 
+      
+  }
+}

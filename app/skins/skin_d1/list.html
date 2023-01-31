@@ -1,14 +1,23 @@
 {% extends 'skin_d1/layout.html' %}
+{% load static %}
 {% block page_content %}
 <div class="container article-list">
   {% for article in articles %}
   <article>
+    <div class="updated_at">
+      <small>Updated on: <time datetime="{{ article.published_at }}">{{ article.published_at  | date:'Y-m-d'}}</time></small>
+    </div>
     <h2><a href="/articles/{{article.slug}}">{{ article.title }}</a></h2>
     <div>
-      <small>Last updated on: <time datetime="{{ article.published_at }}">{{ article.published_at  | date:'Y-m-d'}}</time></small>
-    </div>
-    <div>
       <p>{{ article.summary }}</p>
+    </div>
+    <div class="hashtag">
+      <span><a href="/hashtags/java">#java</a></span>
+      <span><a href="/hashtags/python">#python</a></span>
+    </div>
+    <div class="author">
+      <img src="{% static '/images/icon/ic_somebody.png' %}" width="20" height="20">
+      <span>Nick</span>
     </div>
   </article>
   {% endfor %}

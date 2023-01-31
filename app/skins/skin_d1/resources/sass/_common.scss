@@ -3,33 +3,6 @@ a:link, a:visited {
   color: #333;
   text-decoration: none;
 }
-#header {
-  border-bottom: 1px solid $color-layout-border;
-  min-height: 100px;
-}
-#footer {
-  border-top: 1px solid $color-layout-border;
-  background-color: #333;
-  color: #ddd;
-  min-height: 300px;
-  padding: 1.5rem 0;
-}
-#main_container {
-  min-height: 500px;
-}
-#footer .container, #main_container .container {
-  margin: 0 auto;
-  max-width: $container-max-width;
-}
-/* article list */
-.article-list {
-  article {
-    min-height: 200px;
-  }
-}
-/* article page */
-.article-page {
-  article {
-
-  }
+* {
+  font-family: "Apple SD Gothic Neo", 'Noto Sans KR', sans-serif,sans-serif;
 }

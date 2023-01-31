@@ -7,5 +7,9 @@
             "savePath": "~/../static/skin_d1",
             "savePathReplacementPairs": null
         }
-    ]
+    ],
+    "cSpell.words": [
+        "sitetitle"
+    ],
+    "liveSassCompile.settings.generateMap": false
 }
