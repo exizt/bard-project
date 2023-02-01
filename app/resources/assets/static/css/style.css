@@ -1,0 +1,71 @@
+/*! minireset.css v0.0.6 | MIT License | github.com/jgthms/minireset.css */
+blockquote, body, dd, dl, dt, fieldset, figure, h1, h2, h3, h4, h5, h6, hr, html, iframe, legend, li, ol, p, pre, textarea, ul {
+  margin: 0;
+  padding: 0;
+}
+
+ul {
+  list-style: none;
+}
+
+button, input, select, textarea {
+  margin: 0;
+  font: inherit;
+}
+
+html {
+  box-sizing: border-box;
+}
+
+*, :after, :before {
+  box-sizing: inherit;
+}
+
+img, video, canvas, svg {
+  height: auto;
+  max-width: 100%;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+td, th {
+  padding: 0;
+}
+
+/* _common.scss */
+#header {
+  border-bottom: 1px solid #aaa;
+  min-height: 100px;
+}
+
+#footer {
+  border-top: 1px solid #aaa;
+  background-color: #333;
+  color: #ddd;
+  min-height: 300px;
+  padding: 1.5rem 0;
+}
+
+#main_container {
+  min-height: 500px;
+}
+
+#footer .container, #main_container .container {
+  margin: 0 auto;
+  max-width: 700px;
+}
+
+.article-list article {
+  min-height: 200px;
+}
+
+a:link, a:visited {
+  color: #333;
+  text-decoration: none;
+}
+
+/* article list */
+/* article page *//*# sourceMappingURL=style.css.map */
