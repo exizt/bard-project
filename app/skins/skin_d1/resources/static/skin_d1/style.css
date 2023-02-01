@@ -67,13 +67,27 @@ a:link, a:visited {
   padding: 1.5rem 0;
 }
 
-#main_container {
+#container {
   min-height: 500px;
 }
 
 .wrap-container {
   margin: 0 auto;
   max-width: 1000px;
+}
+
+.main-container {
+  margin-top: 1rem;
+}
+.main-container .hashtag {
+  margin: 0.25em 0;
+}
+.main-container .hashtag a:link, .main-container .hashtag a:visited {
+  color: #bbb;
+  background-color: #333;
+  border-radius: 5px;
+  padding: 0.4em;
+  font-size: 0.5em;
 }
 
 /* _list.scss */
@@ -95,16 +109,26 @@ a:link, a:visited {
 .article-list article .author span {
   margin-left: 0.25em;
 }
-.article-list article .hashtag {
-  margin: 0.25em 0;
-}
-.article-list article .hashtag a:link, .article-list article .hashtag a:visited {
-  color: #bbb;
-  background-color: #333;
-  border-radius: 5px;
-  padding: 0.4em;
-  font-size: 0.5em;
-}
 
 /* _article.scss */
 /* article page */
+.article-view {
+  padding: 0 1rem;
+}
+.article-view article .article-header {
+  text-align: center;
+}
+.article-view article .article-header h1 {
+  padding: 1rem 0;
+  text-align: center;
+}
+.article-view article .article-content {
+  margin-top: 2rem;
+}
+.article-view article .article-content h1, .article-view article .article-content h2, .article-view article .article-content h3 {
+  margin: 1em 0;
+}
+
+pre > code {
+  word-break: break-all;
+}

@@ -2,6 +2,9 @@
 {% load static %}
 {% block skin_static %}
 <link href="{% static '/skin_d1/style.css' %}" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.6.0/styles/atom-one-dark.min.css" integrity="sha512-Jk4AqjWsdSzSWCSuQTfYRIF84Rq/eV0G2+tu07byYwHcbTGfdmLrHjUSwvzp5HvbiqK4ibmNwdcG49Y5RGYPTg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.6.0/highlight.min.js" integrity="sha512-gU7kztaQEl7SHJyraPfZLQCNnrKdaQi5ndOyt4L4UPL/FHDd/uB9Je6KDARIqwnNNE27hnqoWLBq+Kpe4iHfeQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script>hljs.highlightAll();</script>
 {% endblock %}
 {% block content %}
 <header id="header">
@@ -10,13 +13,14 @@
     <span>search</span>
   </div>
 </header>
-<div id="main_container">
-  <div class="wrap-container">
+<div id="container">
+  <div class="wrap-container main-container">
     {% block page_content %}{% endblock %}
   </div>
+  <nav id="sidebar">&nbsp;</nav>
 </div>
 <footer id="footer">
-  <div class="wrap-container">
+  <div class="wrap-container footer-container">
     footer
   </div>
 </footer>

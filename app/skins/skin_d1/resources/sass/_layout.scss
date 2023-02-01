@@ -19,10 +19,26 @@
   min-height: 300px;
   padding: 1.5rem 0;
 }
-#main_container {
+#container {
   min-height: 500px;
 }
 .wrap-container {
   margin: 0 auto;
   max-width: $container-max-width;
+}
+
+
+.main-container {
+  margin-top: 1rem;
+  .hashtag{
+    margin: 0.25em 0;
+    
+    a:link, a:visited {
+      color: #bbb;
+      background-color: #333;
+      border-radius: 5px;
+      padding: 0.4em;
+      font-size: 0.5em;
+    }
+  }
 }

@@ -1,7 +1,26 @@
 /* _article.scss */
 /* article page */
-.article-page {
-  article {
+.article-view {
+  padding: 0 1rem;
 
+  article {
+    .article-header {
+      text-align: center;
+      h1 {
+        padding: 1rem 0;
+        text-align: center;
+      }
+    }
+    .article-content {
+      margin-top: 2rem;
+
+      h1, h2, h3 {
+        margin: 1em 0;
+      }
+    }
   }
+}
+
+pre > code {
+  word-break: break-all;
 }
