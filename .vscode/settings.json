@@ -7,5 +7,9 @@
             "savePath": "~/../static/css",
             "savePathReplacementPairs": null
         }
+    ],
+    "cSpell.words": [
+        "sitetitle",
+        "wordmark"
     ]
 }
