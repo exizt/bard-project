@@ -21,6 +21,10 @@ from django.conf import settings
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', blog_views.index),
+    path('hashtags/', blog_views.index),
+    path('hashtags/<slug:slug>', blog_views.index_by_tag),
+    path('sections/', blog_views.index),
+    path('sections/<slug:slug>', blog_views.index_by_category),
     path('articles/<slug:slug>', blog_views.view),
 ]
 

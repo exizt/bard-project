@@ -14,11 +14,26 @@ class ArticleSectionInline(admin.StackedInline):
     model = SectionArticle
 
 
+class ArticleTagInline(admin.TabularInline):
+    model = TagArticle
+
+
 @admin.register(Article)
 class ArticleAdmin(admin.ModelAdmin):
     list_display = ['title', 'status', 'created_at', 'published_at']
     list_filter = ('status',)
-    inlines = [ArticleSectionInline, ArticleContentInline]
+    # inlines = [ArticleSectionInline, ArticleContentInline]
+    inlines = [ArticleSectionInline, ArticleContentInline, ArticleTagInline]
 
+
+@admin.register(Section)
+class SectionAdmin(admin.ModelAdmin):
+    list_display = ['name', 'slug']
+
+
+@admin.register(Tag)
+class TagAdmin(admin.ModelAdmin):
+    list_display = ['name', 'slug']
+    search_fields = ["name"]
 
 # admin.site.register(Article, ArticleAdmin)
