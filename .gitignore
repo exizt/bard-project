@@ -21,3 +21,6 @@ ENV/
 env.bak/
 venv.bak/
 
+# project source files
+/scripts/dev/*.sql
+!/scripts/dev/drop_tables.sql
