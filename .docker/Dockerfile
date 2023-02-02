@@ -11,6 +11,7 @@ ENV PY_PACKAGES="\
   django \
   mysqlclient \
   django-environ \
+  markdown \
 "
 
 RUN apk update
