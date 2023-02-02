@@ -22,12 +22,12 @@ sudo docker exec -it blog_app_1 bash -c ""
 
 # migrate
 ```shell
-sudo docker exec -it blog_app_1 python manage.py makemigrations
+docker exec -it blog_app_1 python manage.py makemigrations
 
-sudo docker exec -it blog_app_1 python manage.py migrate
+docker exec -it blog_app_1 python manage.py migrate
 ```
 
 동작될 쿼리 확인
 ```shell
-sudo docker exec -it blog_app_1 python manage.py sqlmigrate blog 0001
+docker exec -it blog_app_1 python manage.py sqlmigrate blog 0001
 ```
