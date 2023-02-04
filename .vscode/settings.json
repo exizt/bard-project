@@ -11,5 +11,9 @@
     "cSpell.words": [
         "sitetitle",
         "wordmark"
-    ]
+    ],
+    "files.exclude": {
+        "**/__pycache__": true,
+        "**/.idea": true
+    }
 }
