@@ -128,7 +128,3 @@ a:link, a:visited {
 .article-view article .article-content h1, .article-view article .article-content h2, .article-view article .article-content h3 {
   margin: 1em 0;
 }
-
-pre > code {
-  word-break: break-all;
-}
