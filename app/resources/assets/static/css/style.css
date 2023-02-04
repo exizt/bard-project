@@ -36,36 +36,7 @@ td, th {
 }
 
 /* _common.scss */
-#header {
-  border-bottom: 1px solid #aaa;
-  min-height: 100px;
-}
-
-#footer {
-  border-top: 1px solid #aaa;
-  background-color: #333;
-  color: #ddd;
-  min-height: 300px;
-  padding: 1.5rem 0;
-}
-
-#main_container {
-  min-height: 500px;
-}
-
-#footer .container, #main_container .container {
-  margin: 0 auto;
-  max-width: 700px;
-}
-
-.article-list article {
-  min-height: 200px;
-}
-
 a:link, a:visited {
   color: #333;
   text-decoration: none;
-}
-
-/* article list */
-/* article page *//*# sourceMappingURL=style.css.map */
+}/*# sourceMappingURL=style.css.map */
