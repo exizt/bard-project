@@ -94,7 +94,7 @@ class Tag(models.Model):
 class TagArticle(models.Model):
     article = models.ForeignKey(Article, on_delete=models.CASCADE)
     tag = models.ForeignKey(Tag, on_delete=models.CASCADE)
-    tag_name_cached = models.CharField(max_length=255, default='')
+    # tag_name_cached = models.CharField(max_length=255, default='')
     # dates
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
