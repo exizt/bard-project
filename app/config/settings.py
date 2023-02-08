@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'blog',
+    'adm',
 ]
 
 MIDDLEWARE = [
@@ -146,6 +147,9 @@ STATICFILES_DIRS = [
     BASE_DIR / "resources/assets/static",
     os.path.join(BASE_DIR, 'skins', BLOG_SKIN, 'resources/static')
 ]
+
+
+# LOGIN_REDIRECT_URL = '/adm'
 
 # ### 개발 모드에서 디버그 툴바 사용하기
 if DEBUG:

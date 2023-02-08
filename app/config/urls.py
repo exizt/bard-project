@@ -20,6 +20,8 @@ from django.conf import settings
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('adm/', include('adm.urls')),
+    # path('accounts/', include('django.contrib.auth.urls')),
     path('', blog_views.index),
     path('hashtags/', blog_views.index),
     path('hashtags/<slug:slug>', blog_views.index_by_tag),
