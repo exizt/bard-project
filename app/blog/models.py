@@ -83,8 +83,9 @@ class ArticleContent(models.Model):
 #
 class Tag(models.Model):
     id = UnsignedAutoField(primary_key=True)
-    name = models.CharField(max_length=255, default='')
+    name = models.CharField(max_length=255, default='', unique=True)
     slug = models.CharField(max_length=255, default='')
+    # page_title = models.CharField(max_length=255, default='')
     # articles = models.ManyToManyField(Article, db_table="tag_article_rel")
     articles = models.ManyToManyField(Article,
                                       through="TagArticle",

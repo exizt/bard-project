@@ -1,5 +1,7 @@
 from django.contrib import admin
 from .models import *
+from tag_manager.models import *
+from tag_manager.utils import *
 from django import forms
 from django.forms import ModelForm
 
@@ -23,9 +25,15 @@ class ArticleTagInline(admin.TabularInline):
 
 
 class ArticleAdminForm(forms.ModelForm):
+    class Meta:
+        model = Article
+        # fields = ('title',' slug', 'summary')
+        exclude = ('created_at', 'updated_at')
+        # widgets = { 'title': forms.TextInput(attrs={'size':80})}
+
     # 태그
     tag_input = forms.CharField(label='태그', required=False, 
-        help_text="입력 예시: python, article",
+        help_text="입력 예시: python, mariadb",
         widget=forms.TextInput(attrs={'size':80}))
 
     # 본문
@@ -36,12 +44,20 @@ class ArticleAdminForm(forms.ModelForm):
         super().__init__(*args, **kwargs)
 
         if self.instance.id is not None:
+            # content의 값 가져오기
             article_content = ArticleContent.objects.filter(article_id=self.instance.id).first()
             if article_content is not None:
                 self.fields["markdown"].initial = article_content.markdown
-            tags = TagArticle.objects.filter(article_id=self.instance.id).all()
-            if tags is not None:
-                pass
+
+            # tag의 값 가져오기
+            # tags = TagArticle.objects.filter(article_id=self.instance.id).all()
+            # tags = get_tags_list(article_id=self.instance.id)
+            #if tags is not None:
+            #    pass
+            tag_str = get_tags_str_by_article(article=self.instance)
+            if tag_str is not None:
+                self.fields["tag_input"].initial = tag_str
+
 
     def save(self, commit=True):
         # article = super(ArticleAdminForm, self).save(commit=commit)
@@ -81,14 +97,12 @@ class ArticleAdminForm(forms.ModelForm):
         content_obj = ArticleContent(article_id=article_id, markdown=content_markdown)
         content_obj.save()
 
+        # 태그 처리
+        tag_input = cleaned_data.get("tag_input")
+        if tag_input is not None:
+            save_tags_by_str(self.instance, tag_input)
+
         super(ArticleAdminForm, self)._save_m2m()
-
-
-    class Meta:
-        model = Article
-        # fields = ('title',' slug', 'summary')
-        exclude = ('created_at', 'updated_at')
-        # widgets = { 'title': forms.TextInput(attrs={'size':80})}
 
 
 @admin.register(Article)
