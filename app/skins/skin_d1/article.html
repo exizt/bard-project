@@ -15,6 +15,9 @@
         <small>Last updated on: <time datetime="{{ article.published_at }}">{{ article.published_at  | date:'Y-m-d'}}</time></small>
       </div>
       <div class="hashtag">
+        {% for tag in article.tags %}
+        <span><a href="/hashtags/java">#{{ tag.name }}</a></span>
+        {% endfor %}
         <span><a href="/hashtags/java">#java</a></span>
         <span><a href="/hashtags/python">#python</a></span>
       </div>
