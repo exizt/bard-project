@@ -27,7 +27,10 @@ def view(request, slug):
     article_qry = Article.objects.filter(slug=slug)
 
     article = get_object_or_404(article_qry)
-    article_content = ArticleContent.objects.filter(article=article).first()
+    # article_content = ArticleContent.objects.filter(article=article).first()
+    article_content = article.content.markdown
+    tags = article.tags.all()
+
 
     # view에서 이용될 obj(dict)
     article_vo = {
@@ -35,8 +38,8 @@ def view(request, slug):
         'published_at': article.published_at,
         'summary': article.summary,
         'title': article.title,
-        'content': article_content.output,
-        'content_markdown': article_content.markdown
+        'tags': tags,
+        'content_markdown': article_content
     }
 
     context = {

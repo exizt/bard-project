@@ -52,8 +52,13 @@ class Article(models.Model):
 
 @receiver(post_save, sender=Article)
 def create_article_content(sender, instance, created, **kwargs):
+    """
+    one-to-one 관계의 ArticleContent에 컬럼을 하나 생성하는 기능.
+    article이 생성이 되면 강제로 ArticleContent를 최소 하나 생성해준다.
+    """
     if created:
-        ArticleContent.objects.create(article=instance)
+        # ArticleContent.objects.create(article=instance)
+        ArticleContent.objects.get_or_create(article=instance)
 
 
 class ArticleContent(models.Model):
@@ -65,6 +70,7 @@ class ArticleContent(models.Model):
         Article,
         on_delete=models.CASCADE,
         primary_key=True,
+        related_name="content"
     )
     markdown = models.TextField("마크 다운", default='', blank=True)
     output = models.TextField("HTML 아웃풋", default='', blank=True)
@@ -82,7 +88,7 @@ class Tag(models.Model):
     # articles = models.ManyToManyField(Article, db_table="tag_article_rel")
     articles = models.ManyToManyField(Article,
                                       through="TagArticle",
-                                      related_name="tag")
+                                      related_name="tags")
     # dates
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
@@ -123,6 +129,9 @@ class Section(models.Model):
 
     class Meta:
         db_table = "section"
+
+    def __str__(self):
+        return self.name
 
 
 class SectionArticle(models.Model):
