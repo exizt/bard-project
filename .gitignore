@@ -7,7 +7,7 @@ Thumbs.db
 !.vscode/settings.json
 !.vscode/extensions.json
 .idea/
-*.code-workspace
+# *.code-workspace
 
 # python cache
 __pycache__/
