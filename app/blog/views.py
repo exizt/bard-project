@@ -51,29 +51,6 @@ def view(request, slug):
     return render(request, f'{skin_name}/article.html', context)
 
 
-def index_by_tag(request, slug):
-    """
-    태그에 의한 게시물 목록
-    """
-    tag = Tag.objects.filter(slug=slug).first()
-
-    if tag is None:
-        raise Http404()
-        # return HttpResponseNotFound()
-    else:
-        articles = Article.objects.filter(tag__id=tag.id, status=1).order_by('-published_at')
-        # articles = Article.objects.filter(tag__id=1).order_by('-published_at')
-        # articles = Article.objects.filter(status=1).order_by('-published_at')
-        # articles = Article.objects.filter(status=1, tag=tag).order_by('-published_at')
-
-    context = {
-        'articles': articles,
-        'blog': get_blog_info()
-    }
-    skin_name = settings.BLOG_SKIN
-    return render(request, f'{skin_name}/list.html', context)
-
-
 def index_by_category(request, slug):
     """
     섹션 카테고리에 의한 게시물 목록

@@ -45,6 +45,7 @@ def save_tags_by_str(article:Article, tag_str):
         # TagArticle.objects.filter(article_id=article.id, )
         # Tag.objects.filter(name=tag_name)
         TagArticle.objects.filter(tag__name=tag_name, article_id=article.id).delete()
+        # 태그의 카운트 변경이 필요.
 
     # 추가된 태그 항목에 대해서 생성하거나 변경
     for tag_name in new_list:
@@ -52,3 +53,4 @@ def save_tags_by_str(article:Article, tag_str):
             tag, _ = Tag.objects.get_or_create(name=tag_name)
             tag_article = TagArticle(tag=tag, article_id=article.id)
             tag_article.save()
+            # 태그의 카운트 변경이 필요.
