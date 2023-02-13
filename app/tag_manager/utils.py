@@ -1,6 +1,7 @@
 from .models import *
 from blog.models import *
-from django.db.models import F
+from django.utils.text import slugify
+
 
 def get_tags_by_article(article:Article):
     return article.tags
@@ -35,7 +36,8 @@ def save_tags_by_str(article:Article, tag_str):
     tag_names_origin = get_tag_names_list_by_article(article)
 
     tag_list = tag_str.split(',') if len(tag_str) > 0 else []
-    tag_list = [x.strip() for x in tag_list] # 공백 제거
+    tag_list = [x.strip() for x in tag_list] # 좌우 공백 제거
+    tag_list = [slugify(x, allow_unicode=True) for x in tag_list] # slug 타입으로 변경 (중간의 공백 _ 처리 및 소문자화)
 
     remove_list = list(set(tag_names_origin).difference(set(tag_list))) # origin - tag_list
     new_list = list(set(tag_list).difference(set(tag_names_origin))) # tag_list - origin
