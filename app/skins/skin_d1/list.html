@@ -12,8 +12,9 @@
       <p>{{ article.summary }}</p>
     </div>
     <div class="hashtag">
-      <span><a href="/hashtags/java">#java</a></span>
-      <span><a href="/hashtags/python">#python</a></span>
+      {% for tag in article.tags.all %}
+      <span><a href="/hashtags/{{ tag.name }}">#{{ tag.name }}</a></span>
+      {% endfor %}
     </div>
     <div class="author">
       <img src="{% static '/images/icon/ic_somebody.png' %}" width="20" height="20">

@@ -23,7 +23,7 @@ def index_by_tag(request, tag_name):
         raise Http404()
         # return HttpResponseNotFound()
     else:
-        articles = Article.objects.filter(tags__id=tag.id, status=1).order_by('-published_at')
+        articles = Article.objects.prefetch_related('tags').filter(tags__id=tag.id, status=1).order_by('-published_at')
         # articles = Article.objects.filter(tag__id=1).order_by('-published_at')
         # articles = Article.objects.filter(status=1).order_by('-published_at')
         # articles = Article.objects.filter(status=1, tag=tag).order_by('-published_at')

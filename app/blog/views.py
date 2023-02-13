@@ -12,7 +12,8 @@ def index(request):
     :return:
     """
     # articles = Article.objects.filter(status=1).order_by('-published_at')
-    articles = Article.objects.filter(status=1).order_by('-published_at')
+    # articles = Article.objects.filter(status=1).order_by('-published_at')
+    articles = Article.objects.prefetch_related('tags').filter(status=1).order_by('-published_at')
 
     context = {
         'articles': articles,
