@@ -1,5 +1,6 @@
 from .models import *
 from blog.models import *
+from django.db.models import F
 
 def get_tags_by_article(article:Article):
     return article.tags
@@ -46,6 +47,13 @@ def save_tags_by_str(article:Article, tag_str):
         # Tag.objects.filter(name=tag_name)
         TagArticle.objects.filter(tag__name=tag_name, article_id=article.id).delete()
         # 태그의 카운트 변경이 필요.
+        # tag = Tag.objects.filter(name=tag_name).first()
+        # Tag.objects.filter(name=tag_name).update(count=F('count')+1)
+        tag = Tag.objects.filter(name=tag_name).first()
+        if tag.count > 1:
+            tag.count -= 1
+            tag.save()
+
 
     # 추가된 태그 항목에 대해서 생성하거나 변경
     for tag_name in new_list:
@@ -54,3 +62,5 @@ def save_tags_by_str(article:Article, tag_str):
             tag_article = TagArticle(tag=tag, article_id=article.id)
             tag_article.save()
             # 태그의 카운트 변경이 필요.
+            tag.count += 1
+            tag.save()
