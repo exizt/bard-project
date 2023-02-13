@@ -127,11 +127,12 @@ class ArticleAdmin(admin.ModelAdmin):
 
 @admin.register(Section)
 class SectionAdmin(admin.ModelAdmin):
-    list_display = ['name', 'slug']
+    list_display = ('name', 'slug')
 
 
 @admin.register(Tag)
 class TagAdmin(admin.ModelAdmin):
-    list_display = ['name', 'slug']
-    search_fields = ["name"]
+    list_display = ('name', 'count')
+    search_fields = ('name',)
+    readonly_fields = ('count',)
 
