@@ -80,40 +80,6 @@ class ArticleContent(models.Model):
         db_table = "article_content"
 
 
-#
-class Tag(models.Model):
-    id = UnsignedAutoField(primary_key=True)
-    name = models.CharField(max_length=255, default='', unique=True)
-    slug = models.CharField(max_length=255, default='')
-    # page_title = models.CharField(max_length=255, default='')
-    # articles = models.ManyToManyField(Article, db_table="tag_article_rel")
-    articles = models.ManyToManyField(Article,
-                                      through="TagArticle",
-                                      related_name="tags")
-    # dates
-    created_at = models.DateTimeField(auto_now_add=True)
-    updated_at = models.DateTimeField(auto_now=True)
-
-    class Meta:
-        db_table = "tags"
-
-
-class TagArticle(models.Model):
-    article = models.ForeignKey(Article, on_delete=models.CASCADE)
-    tag = models.ForeignKey(Tag, on_delete=models.CASCADE)
-    # tag_name_cached = models.CharField(max_length=255, default='')
-    # dates
-    created_at = models.DateTimeField(auto_now_add=True)
-    updated_at = models.DateTimeField(auto_now=True)
-
-    class Meta:
-        db_table = "tag_article_rel"
-        indexes = [
-           # models.Index(fields=['tag_name_cached', 'article_id'])
-        ]
-
-
-#
 class Section(models.Model):
     id = UnsignedAutoField(primary_key=True)
     name = models.CharField("섹션 명칭", max_length=255, default='')
@@ -123,7 +89,7 @@ class Section(models.Model):
     logical_path = models.CharField(max_length=255, default='')
     order = models.IntegerField("정렬 순", default=0)
     depth = models.IntegerField("깊이", default=0)
-    count = models.IntegerField("글 수", default=0, editable=False)
+    count = models.IntegerField("게시글 수", default=0, editable=False)
     # dates
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
