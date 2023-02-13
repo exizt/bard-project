@@ -40,5 +40,29 @@ cd app
 python manage.py startapp app-name
 ```
 
+# 마이그레이션
+## 마이그레이션 파일 생성
+마이그레이션 파일 생성 (로컬에 파이썬이 설치되어 있다면, 로컬에서 다음을 실행)
+```shell
+cd app
+python manage.py makemigrations
+```
+
+아니면 도커에서
+```shell
+docker exec -it blog_app_1 python manage.py makemigrations
+```
 
 
+## 데이터베이스에 반영
+데이터베이스에 반영 (커넥션 등의 이슈가 있으므로 도커 내에서 실행)
+```
+docker exec -it blog_app_1 python manage.py migrate
+```
+
+## 쿼리만 확인하기
+쿼리만 확인하기
+```shell
+cd app
+python manage.py sqlmigrate blog 0001
+```
