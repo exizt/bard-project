@@ -11,5 +11,8 @@ def sub(value, arg):
 
 @register.filter
 def markdown(value):
-    extensions = ["nl2br", "fenced_code"]
+    # 기본 내장 확장 기능 : 'nl2br', 'fenced_code', 'tables'
+    # 외부 확장 기능
+    #   - 'mdx_breakless_lists' : 'pip install mdx-breakless-lists'
+    extensions = ['nl2br', 'fenced_code', 'tables', 'mdx_breakless_lists']
     return mark_safe(Markdown.markdown(value, extensions=extensions))

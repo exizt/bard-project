@@ -12,6 +12,7 @@ ENV PY_PACKAGES="\
   mysqlclient \
   django-environ \
   markdown \
+  mdx-breakless-lists \
 "
 
 RUN apk update
