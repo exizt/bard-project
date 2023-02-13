@@ -1,0 +1,42 @@
+{
+	"folders": [
+		{
+			"path": "."
+		},
+		{
+			"path": "app"
+		}
+	],
+	"settings": {
+		"liveSassCompile.settings.forceBaseDirectory": "/app/resources/assets",
+		"liveSassCompile.settings.formats": [
+			{
+				"format": "expanded",
+				"extensionName": ".css",
+				"savePath": "~/../static/css",
+				"savePathReplacementPairs": null
+			}
+		],
+		"cSpell.words": [
+			"asgi",
+			"asgiref",
+			"breakless",
+			"makemigrations",
+			"sitetitle",
+			"sqlparse",
+			"wordmark"
+		],
+		"files.exclude": {
+			"**/__pycache__": true,
+			"**/.idea": true
+		}
+	},
+	"extensions": {
+		"recommendations": [
+			"streetsidesoftware.code-spell-checker",
+			"glenn2223.live-sass",
+			"ms-python.vscode-pylance",
+			"ms-python.isort"
+		]
+	}
+}
