@@ -17,6 +17,26 @@
       h1, h2, h3 {
         margin: 1em 0;
       }
+      > p {
+        margin-bottom: 1.1em;
+        line-height: 140%;
+      }
+      > pre {
+        margin-bottom: 1.5em;
+      }
+      ul, ol {
+        margin-bottom: 1.1em;
+      }
+      ul li, ol li{
+        margin-bottom: 0.5em;
+      }
+      ul {
+        list-style: disc;
+        padding-inline-start: 2em;
+      }
+      ol {
+        padding-inline-start: 2em;
+      }
     }
   }
 }

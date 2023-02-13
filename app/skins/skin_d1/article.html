@@ -16,10 +16,8 @@
       </div>
       <div class="hashtag">
         {% for tag in article.tags %}
-        <span><a href="/hashtags/java">#{{ tag.name }}</a></span>
+        <span><a href="/hashtags/{{ tag.name }}">#{{ tag.name }}</a></span>
         {% endfor %}
-        <span><a href="/hashtags/java">#java</a></span>
-        <span><a href="/hashtags/python">#python</a></span>
       </div>
     </div>
     <div class="article-content">

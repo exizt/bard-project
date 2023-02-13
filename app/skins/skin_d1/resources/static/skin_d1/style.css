@@ -128,3 +128,25 @@ a:link, a:visited {
 .article-view article .article-content h1, .article-view article .article-content h2, .article-view article .article-content h3 {
   margin: 1em 0;
 }
+.article-view article .article-content > p {
+  margin-bottom: 1.1em;
+  line-height: 140%;
+}
+.article-view article .article-content > pre {
+  margin-bottom: 1.5em;
+}
+.article-view article .article-content ul, .article-view article .article-content ol {
+  margin-bottom: 1.1em;
+}
+.article-view article .article-content ul li, .article-view article .article-content ol li {
+  margin-bottom: 0.5em;
+}
+.article-view article .article-content ul {
+  list-style: disc;
+  -webkit-padding-start: 2em;
+          padding-inline-start: 2em;
+}
+.article-view article .article-content ol {
+  -webkit-padding-start: 2em;
+          padding-inline-start: 2em;
+}
