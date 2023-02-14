@@ -16,4 +16,5 @@ fi
 
 cd $APP_PATH
 
-rm ./blog/migrations/0001_initial.py
+rm -fv ./blog/migrations/0001_initial.py
+rm -fv ./tag_manager/migrations/0001_initial.py
