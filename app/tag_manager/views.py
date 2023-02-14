@@ -31,8 +31,21 @@ def index_by_tag(request, tag_slug):
         redirect_url = tag.parent.get_absolute_url()
         return redirect(redirect_url)
 
+    # 태그와 하위 태그를 포함한 리스트
+    tag_list = Tag.objects.filter(parent_id=tag.id).values_list('id', flat=True)
+    tag_list = list(tag_list)
+    tag_list.append(tag.id)
+
+
     # 해당하는 게시글 조회
-    articles = Article.objects.prefetch_related('tags').filter(tags__id=tag.id, status=1).order_by('-published_at')
+    # articles = Article.objects.prefetch_related('tags').filter(tags__id=tag.id, status=1).order_by('-published_at')
+    articles = Article.objects.prefetch_related('tags') \
+        .filter(tags__id__in=tag_list, status=1) \
+        .distinct() \
+        .order_by('-published_at') \
+        .only('title','slug','summary','published_at')
+    # articles = qry.distinct().order_by('-published_at').only(cols)
+    # articles = Article.objects.prefetch_related('tags').filter(tags__id__in=tag_list, status=1).distinct().order_by('-published_at')
     # articles = Article.objects.filter(tag__id=1).order_by('-published_at')
     # articles = Article.objects.filter(status=1).order_by('-published_at')
     # articles = Article.objects.filter(status=1, tag=tag).order_by('-published_at')
