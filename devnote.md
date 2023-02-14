@@ -66,3 +66,15 @@ docker exec -it blog_app_1 python manage.py migrate
 cd app
 python manage.py sqlmigrate blog 0001
 ```
+
+## 마이그레이션 갱신 시
+1. 기존에 생성되었던 migrate 파일을 삭제한다.
+2. migrate 명령을 수행한다. 
+
+상세
+
+```
+./scripts/dev/drop_migrate_files.sh 1
+
+
+```
