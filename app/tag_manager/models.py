@@ -33,7 +33,6 @@ class Tag(models.Model):
         return f"/hashtags/{self.name}"
 
 
-
 class TagArticle(models.Model):
     article = models.ForeignKey(Article, on_delete=models.CASCADE)
     tag = models.ForeignKey(Tag, on_delete=models.CASCADE)

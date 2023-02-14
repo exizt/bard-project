@@ -9,7 +9,7 @@ def get_tags_by_article(article:Article):
 
 def get_tag_names_list_by_article(article:Article) -> list:
     """
-    해당하는 태그 목록을 조회하여 tag_name을 
+    해당하는 태그 목록을 조회하여 'tag_name'을 
     list 타입으로 반환하는 함수
     """
     tags_obj = get_tags_by_article(article)
@@ -18,7 +18,7 @@ def get_tag_names_list_by_article(article:Article) -> list:
 
 def get_tags_str_by_article(article:Article) -> str:
     """
-    해당하는 태그 목록을 조회하여 tag_name을 
+    해당하는 태그 목록을 조회하여 'tag_name'을
     'tag1, tag2'의 문자열 형태로 반환하는 함수
     """
     tag_names_list = get_tag_names_list_by_article(article)

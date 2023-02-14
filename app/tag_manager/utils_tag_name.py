@@ -3,29 +3,35 @@ import re
 from django.utils.text import slugify
 
 
-def tag_name_encode(value, allow_unicode=False):
+def tag_name_safe(value, allow_unicode=False):
     """
     태그명이 저장될 때에 공백이나 특수문자를 제거함.
       - 공백은 '-'로 치환됨
-      - 특수문자 중 #은 유지됨.
+      - 특수문자 중 #은 유지됨. (기존 slugify 함수에서 수정한 부분)
     참고
       - https://github.com/django/django/blob/main/django/utils/text.py#L420
     """
     if allow_unicode:
         value = str(value)
-        value = unicodedata.normalize("NFKC", value)
-        value = re.sub(r"[^\w\s\#-]", "", value.lower())
-        # 첫 문자가 #인 것은 제거되게 해야할 듯한데.
-        value = re.sub(r"^(\#)", "", value)
-        value = re.sub(r"[-\s]+", "-", value).strip("-_")
+        value = unicodedata.normalize("NFKC", value) # 문자 분석 후 정규화(애매한 국제 글자 등이 영어로 전환됨)
+        value = value.lower() # 소문자 처리
+        value = re.sub(r"[^\w\s\#-]", "", value) # 문자, 공백, -, #을 제외한 글자 제거
+        value = re.sub(r"^(\#)", "", value) # 첫글자가 #이 온 경우 # 제거
+        value = re.sub(r"[-\s]+", "-", value).strip("-_") # 공백을 -로 치환
         return value
     else:
         return slugify(value, allow_unicode=False)
 
-def get_tag_code_from_name(value):
+def encode_tag_name(value):
+    """
+    태그명에서 #을 'urlencode'로 변환.
+    """
     value = str(value)
     return value.replace("#", "%23")
 
-def get_tag_name_from_code(value):
+def decode_tag_name(value):
+    """
+    url code 값에서 %23 등을 #으로 변환.
+    """
     value = str(value)
     return value.replace("%23", "#")
