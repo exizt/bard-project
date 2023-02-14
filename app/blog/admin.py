@@ -1,9 +1,8 @@
 from django.contrib import admin
 from .models import *
 from tag_manager.models import *
-from tag_manager.utils import *
+import tag_manager.utils as tag_utils
 from django import forms
-from django.forms import ModelForm
 
 # Register your models here.
 # admin.site.register(Article)
@@ -54,7 +53,7 @@ class ArticleAdminForm(forms.ModelForm):
             # tags = get_tags_list(article_id=self.instance.id)
             #if tags is not None:
             #    pass
-            tag_str = get_tags_str_by_article(article=self.instance)
+            tag_str = tag_utils.get_tag_names_str_by_article(article=self.instance)
             if tag_str is not None:
                 self.fields["tag_input"].initial = tag_str
 
@@ -100,7 +99,7 @@ class ArticleAdminForm(forms.ModelForm):
         # 태그 처리
         tag_input = cleaned_data.get("tag_input")
         if tag_input is not None:
-            save_tags_by_str(self.instance, tag_input)
+            tag_utils.save_tags_by_str(self.instance, tag_input)
 
         super(ArticleAdminForm, self)._save_m2m()
 
@@ -134,5 +133,5 @@ class SectionAdmin(admin.ModelAdmin):
 class TagAdmin(admin.ModelAdmin):
     list_display = ('name', 'count')
     search_fields = ('name',)
-    readonly_fields = ('count',)
+    readonly_fields = ('count', 'slug')
 

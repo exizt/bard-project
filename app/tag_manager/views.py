@@ -13,11 +13,12 @@ def index(request):
     pass
 
 
-def index_by_tag(request, tag_name):
+def index_by_tag(request, tag_slug):
     """
     태그에 의한 게시물 목록
     """
-    tag = Tag.objects.filter(name=tag_name).first()
+    # tag_slug = str(tag_slug).replace("#", "%23")
+    tag = Tag.objects.filter(slug=tag_slug).first()
 
     if tag is None:
         raise Http404()
