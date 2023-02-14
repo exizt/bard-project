@@ -131,7 +131,7 @@ class SectionAdmin(admin.ModelAdmin):
 
 @admin.register(Tag)
 class TagAdmin(admin.ModelAdmin):
-    list_display = ('name', 'count')
+    list_display = ('name', 'slug', 'count', 'parent')
     search_fields = ('name',)
     readonly_fields = ('count', 'slug')
 

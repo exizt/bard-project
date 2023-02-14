@@ -4,6 +4,7 @@ from .models import *
 from blog.models import *
 from blog.utils import *
 from django.http import Http404
+from django.shortcuts import redirect
 
 
 def index(request):
@@ -20,14 +21,21 @@ def index_by_tag(request, tag_slug):
     # tag_slug = str(tag_slug).replace("#", "%23")
     tag = Tag.objects.filter(slug=tag_slug).first()
 
+    # 생성되지 않은 태그명으로 접속한 경우 404로 처리.
     if tag is None:
         raise Http404()
         # return HttpResponseNotFound()
-    else:
-        articles = Article.objects.prefetch_related('tags').filter(tags__id=tag.id, status=1).order_by('-published_at')
-        # articles = Article.objects.filter(tag__id=1).order_by('-published_at')
-        # articles = Article.objects.filter(status=1).order_by('-published_at')
-        # articles = Article.objects.filter(status=1, tag=tag).order_by('-published_at')
+    
+    # parent 값이 존재할 경우, 리디렉션을 한다.
+    if tag.parent is not None:
+        redirect_url = tag.parent.get_absolute_url()
+        return redirect(redirect_url)
+
+    # 해당하는 게시글 조회
+    articles = Article.objects.prefetch_related('tags').filter(tags__id=tag.id, status=1).order_by('-published_at')
+    # articles = Article.objects.filter(tag__id=1).order_by('-published_at')
+    # articles = Article.objects.filter(status=1).order_by('-published_at')
+    # articles = Article.objects.filter(status=1, tag=tag).order_by('-published_at')
 
     context = {
         'articles': articles,
