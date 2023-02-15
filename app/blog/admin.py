@@ -9,18 +9,18 @@ from django import forms
 # admin.site.register(ArticleContent)
 
 
-class ArticleContentInline(admin.StackedInline):
-    model = ArticleContent
+# class ArticleContentInline(admin.StackedInline):
+    # model = ArticleContent
 
 
 class ArticleSectionInline(admin.StackedInline):
     model = SectionArticle
 
 
-class ArticleTagInline(admin.TabularInline):
-    model = TagArticle
-    verbose_name = "태그"
-    verbose_name_plural = "태그 목록"
+# class ArticleTagInline(admin.TabularInline):
+    # model = TagArticle
+    # verbose_name = "태그"
+    # verbose_name_plural = "태그 목록"
 
 
 class ArticleAdminForm(forms.ModelForm):
@@ -127,11 +127,3 @@ class ArticleAdmin(admin.ModelAdmin):
 @admin.register(Section)
 class SectionAdmin(admin.ModelAdmin):
     list_display = ('name', 'slug')
-
-
-@admin.register(Tag)
-class TagAdmin(admin.ModelAdmin):
-    list_display = ('name', 'slug', 'count', 'parent')
-    search_fields = ('name',)
-    readonly_fields = ('count', 'slug')
-
