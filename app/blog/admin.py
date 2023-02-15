@@ -106,9 +106,9 @@ class ArticleAdminForm(forms.ModelForm):
 
 @admin.register(Article)
 class ArticleAdmin(admin.ModelAdmin):
-    
     list_display = ['title', 'status', 'created_at', 'published_at']
     list_filter = ('status',)
+    search_fields = ('title',)
     fieldsets = (
         (None, {
             'fields': ('title', 'slug', 'summary', 'markdown')

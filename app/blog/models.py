@@ -44,6 +44,7 @@ class Article(models.Model):
         indexes = [
            models.Index(fields=['-published_at'])
         ]
+        verbose_name_plural = "게시글"
     
     def get_absolute_url(self):
         """관리자 페이지에서 '사이트에서 보기' 링크 """
@@ -57,8 +58,8 @@ def create_article_content(sender, instance, created, **kwargs):
     article이 생성이 되면 강제로 ArticleContent를 최소 하나 생성해준다.
     """
     if created:
-        # ArticleContent.objects.create(article=instance)
         ArticleContent.objects.get_or_create(article=instance)
+        SectionArticle.objects.get_or_create(article=instance)
 
 
 class ArticleContent(models.Model):
@@ -96,6 +97,7 @@ class Section(models.Model):
 
     class Meta:
         db_table = "section"
+        verbose_name_plural = "분야(섹션)"
 
     def __str__(self):
         return self.name
@@ -103,11 +105,15 @@ class Section(models.Model):
 
 class SectionArticle(models.Model):
     """
-    A relation to section of article.
-    It has one row per article.
-    섹션은 하나의 값을 갖는다. 값은 null(전체 영역) 이거나 특정 섹션이 된다.
+    Article과 Section의 1:N 릴레이션 테이블.
+    Article과의 관계는 1:1이고, Section과의 관계는 1:N(Section:SectionArticle)이다.
+
+    기본 구조
+      - article_id : PK로 사용되고, 인덱싱의 수월함을 위해서 
+          게시글 생성시 같이 생성되고 삭제시 같이 삭제되게 한다.
+      - section_id : FK이며, Section을 가리킨다.
+          null 허용이어야 한다. (섹션을 지정하지 않을 수 있으므로)
     """
-    # article_id = models.ForeignKey(Article, on_delete=models.CASCADE)
     article = models.OneToOneField(
         Article,
         on_delete=models.CASCADE,
