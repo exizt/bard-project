@@ -48,7 +48,8 @@ class Article(models.Model):
     
     def get_absolute_url(self):
         """관리자 페이지에서 '사이트에서 보기' 링크 """
-        return f"/articles/{self.slug}"
+        return f"/{self.slug}"
+        # return f"/articles/{self.slug}"
 
 
 @receiver(post_save, sender=Article)

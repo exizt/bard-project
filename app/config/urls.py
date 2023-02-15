@@ -28,7 +28,8 @@ urlpatterns = [
     # path('hashtags/<slug:slug>', blog_views.index_by_tag),
     path('sections/', blog_views.index),
     path('sections/<slug:slug>', blog_views.index_by_category),
-    path('articles/<slug:slug>', blog_views.view),
+    # path('articles/<slug:slug>', blog_views.view),
+    path('<slug:slug>', blog_views.view),
 ]
 
 # 디버그 툴바를 위한 설정
