@@ -12,6 +12,11 @@ from django.db.models.signals import post_save
 class Article(models.Model):
     """
     게시물 테이블
+    
+    기본 구조
+      - id : 게시글 id
+      - status : 게시글 상태값
+      - slug : 유니크 인덱스
     """
     class Status(models.IntegerChoices):
         TRASH = 0  # 휴지통.
@@ -45,7 +50,7 @@ class Article(models.Model):
            models.Index(fields=['-published_at'])
         ]
         verbose_name_plural = "게시글"
-    
+
     def get_absolute_url(self):
         """관리자 페이지에서 '사이트에서 보기' 링크 """
         return f"/{self.slug}"
@@ -66,7 +71,9 @@ def create_article_content(sender, instance, created, **kwargs):
 class ArticleContent(models.Model):
     """
     게시물 컨텐츠 테이블.
-    History 기능 지원을 고려, PK는 Auto Increment bigint id로 두도록 함.
+    
+    article_id를 PK + FK로 구성
+    향후에 히스토리 기능을 지원할 지 고려 중.
     """
     article = models.OneToOneField(
         Article,
@@ -83,6 +90,11 @@ class ArticleContent(models.Model):
 
 
 class Section(models.Model):
+    """
+    섹션 테이블
+    게시글의 카테고리(섹션)을 담당한다
+    카테고리와는 조금 다르게 깊이는 1 이상이 되지 않도록 한다
+    """
     id = UnsignedAutoField(primary_key=True)
     name = models.CharField("섹션 명칭", max_length=255, default='')
     # slug = models.CharField(max_length=255, default='')
