@@ -55,7 +55,7 @@ docker exec -it blog_app_1 python manage.py makemigrations
 
 
 ## 데이터베이스에 반영
-데이터베이스에 반영 (커넥션 등의 이슈가 있으므로 도커 내에서 실행)
+데이터베이스에 반영 (커넥션 등의 이슈가 있으므로 도커 컨테이너 내에서 실행)
 ```
 docker exec -it blog_app_1 python manage.py migrate
 ```
