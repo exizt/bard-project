@@ -2,7 +2,7 @@
 
 # 파이썬 패키지를 빌드하기 위한 이미지.
 # gcc의 용량이 크기 때문에, 별도로 분리해서 결과물만 복사이동하는 방식.
-FROM python:3.9-alpine AS Builder
+FROM python:3-alpine AS Builder
 # RUN apk add gcc musl-dev mariadb-connector-c-dev
 # RUN apk add gcc
 
@@ -21,7 +21,7 @@ RUN pip install $PY_PACKAGES --user
 
 
 # 본격적인 이미지
-FROM python:3.9-alpine
+FROM python:3-alpine
 
 # alpine은 bash가 없다고 하니, 설치를 해야 함.
 RUN apk add --no-cache bash
