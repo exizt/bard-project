@@ -21,6 +21,9 @@ ENV/
 env.bak/
 venv.bak/
 
-# project source files
+## project source files
+# docker 환경 변수
+.docker/.env.*
+# 스크립트
 /scripts/dev/*.sql
 !/scripts/dev/drop_tables.sql
