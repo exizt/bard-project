@@ -4,7 +4,7 @@ services:
   app:
     build:
       context: .
-      dockerfile: ${APP_DOCKERFILE}
+      dockerfile: ${DKO_APP_DOCKERFILE}
       network: host # alpine build 중 temporary error 방지.
     ports:
       - ${APP_PORT_EXTERNAL}:8000
@@ -16,7 +16,7 @@ services:
       - ./scripts:/srv/scripts
       - ./.docker/docker-entrypoint.sh:/srv/docker-entrypoint.sh
       # - webapp_data:/app/web
-    restart: always
+    restart: ${DKO_RESTART}
     # command: python manage.py runserver 0.0.0.0:8000
     entrypoint: /bin/bash /srv/docker-entrypoint.sh
   db:
@@ -31,6 +31,6 @@ services:
       - ${DB_PORT_EXTERNAL}:3306
     volumes:
       - db:/var/lib/mysql
-    restart: always
+    restart: ${DKO_RESTART}
 volumes:
   db:
