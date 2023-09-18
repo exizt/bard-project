@@ -78,3 +78,13 @@ python manage.py sqlmigrate blog 0001
 
 
 ```
+
+
+# 데이터베이스 구조
+## 모델 구조
+blog/models
+    - Article
+    - ArticleContent
+    - Section
+    - SectionArticle
+    - Blog

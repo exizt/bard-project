@@ -13,7 +13,7 @@
 
 # 도커 실행
 ```shell
-sudo docker-compose --env-file=.docker/.env up --build --force-recreate -d
+sudo docker-compose --env-file=.docker/.env.local up --build --force-recreate -d
 ```
 
 # 도커로 명령어 실행할 경우
