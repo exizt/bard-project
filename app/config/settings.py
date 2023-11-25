@@ -19,7 +19,7 @@ import os
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 # `django-environ`을 사용하는 구문
-env = environ.Env(DEBUG=(bool, True))
+env = environ.Env(DEBUG=(bool, False))
 environ.Env.read_env(os.path.join(BASE_DIR, '.env'))
 
 # Quick-start development settings - unsuitable for production
@@ -165,3 +165,7 @@ if DEBUG:
 
     hostname, _, ips = socket.gethostbyname_ex(socket.gethostname())
     INTERNAL_IPS = [ip[: ip.rfind(".")] + ".1" for ip in ips] + ["127.0.0.1", "10.0.2.2", env('INTERNAL_IP_')]
+
+
+# 커스텀 변수
+BLOG_NAME = env.str('BLOG_NAME', default='bard-project')
