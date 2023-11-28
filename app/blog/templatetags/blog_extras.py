@@ -1,6 +1,8 @@
 import markdown as Markdown
 from django import template
 from django.utils.safestring import mark_safe
+from django.conf import settings
+
 
 register = template.Library()
 
@@ -16,3 +18,7 @@ def markdown(value):
     #   - 'mdx_breakless_lists' : 'pip install mdx-breakless-lists'
     extensions = ['nl2br', 'fenced_code', 'tables', 'mdx_breakless_lists']
     return mark_safe(Markdown.markdown(value, extensions=extensions))
+
+@register.simple_tag
+def settings_value(name):
+    return getattr(settings, name, "")

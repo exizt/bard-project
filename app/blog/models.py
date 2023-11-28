@@ -9,6 +9,31 @@ from django.dispatch import receiver
 from django.db.models.signals import post_save
 
 
+class Blog(models.Model):
+    """
+    블로그 정보 테이블
+    """
+    id = UnsignedAutoField(primary_key=True)
+    name = models.CharField("블로그 이름", max_length=255, default='')
+    title = models.CharField("블로그 제목", max_length=255, default='', 
+                             help_text="상단, HTML 헤더로 표출됨.")
+    # html 타이틀을 별개로 설정할 경우. 없을 시 'title'값을 사용함.
+    html_title = models.CharField("HTML 타이틀", max_length=255, default='', 
+                                  help_text="미입력시 '블로그 제목'이 사용됨.")
+    author_nick = models.CharField("블로그 작성자 이름", max_length=255, default='')
+
+    # dates
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+    
+    class Meta:
+        db_table = "blog"
+        verbose_name_plural = "블로그 정보"
+
+    def __str__(self):
+        return self.name
+
+
 class Article(models.Model):
     """
     게시물 테이블
